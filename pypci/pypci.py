@@ -305,12 +305,12 @@ def io_read(bar, offset, size):
     while seek < size:
         remains = size - seek
         
-        if remains > 4:
+        if remains >= 4:
             r = portio.inl(target+seek)
             ret += struct.pack('<I', r)
             seek += 4
             
-        elif remains > 2:
+        elif remains >= 2:
             r = portio.inw(target+seek)
             ret += struct.pack('<H', r)
             seek += 2
@@ -349,12 +349,12 @@ def io_write(bar, offset, data):
     while seek < size:
         remains = size - seek
         
-        if remains > 4:
+        if remains >= 4:
             val = struct.unpack('<I', data[seek:seek+4])[0]
             portio.outl(val, target+seek)
             seek += 4
             
-        elif remains > 2:
+        elif remains >= 2:
             val = struct.unpack('<H', data[seek:seek+2])[0]
             portio.outw(val, target+seek)
             seek += 2
