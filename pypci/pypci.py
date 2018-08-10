@@ -331,7 +331,7 @@ def mem_read(bar, offset, size):
     
     f = os.open('/dev/mem', os.O_RDONLY)
     m = mmap_open(f, bar.size, prot=mmap.PROT_READ, offset=bar.addr)
-    m.seek(offset)
+    m.seek(offset, os.SEEK_CUR)
     ret = m.read(size)
     m.close()
     os.close(f)
@@ -376,7 +376,7 @@ def mem_write(bar, offset, data):
     size = len(data)
     f = os.open('/dev/mem', os.O_RDWR)
     m = mmap_open(f, bar.size, prot=mmap.PROT_WRITE, offset=bar.addr)
-    m.seek(offset)
+    m.seek(offset, os.SEEK_CUR)
     m.write(data)
     m.close()
     os.close(f)
