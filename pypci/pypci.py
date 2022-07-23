@@ -123,18 +123,24 @@ def parse_lspci_output(output_txt):
         return size
     
     def get_io_addr(line):
-        if line.find('bridge') != -1:
-            line = line.split('-')[0]
-            return int(line.split()[-1], 16)
-        
-        return int(line.split()[3], 16)
+        try:
+            if line.find('bridge') != -1:
+                line = line.split('-')[0]
+                return int(line.split()[-1], 16)
+            
+            return int(line.split()[3], 16)
+        except ValueError:
+            return
     
     def get_mem_addr(line):
-        if line.find('bridge') != -1:
-            line = line.split('-')[0]
-            return int(line.split()[-1], 16)
-        
-        return int(line.split()[2], 16)
+        try:
+            if line.find('bridge') != -1:
+                line = line.split('-')[0]
+                return int(line.split()[-1], 16)
+            
+            return int(line.split()[2], 16)
+        except ValueError:
+            return
     
     bar_list = []
     dump = b''
