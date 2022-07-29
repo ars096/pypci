@@ -3,7 +3,7 @@ import setuptools
 
 setuptools.setup(
     name = 'pypci',
-    version = __import__('pypci').__version__,
+    version = "1.0.4",
     description = 'PCI driver for python',
     url = 'https://github.com/ars096/pypci',
     author = 'Atsushi Nishimura',
