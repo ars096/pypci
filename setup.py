@@ -6,7 +6,7 @@ long_description = (Path(__file__).parent / "README.md").read_text()
 
 setuptools.setup(
     name = 'pypci',
-    version = "1.0.4",
+    version = "0.1.4",
     description = 'PCI driver for python',
     long_description=long_description,
     long_description_content_type="text/markdown",
